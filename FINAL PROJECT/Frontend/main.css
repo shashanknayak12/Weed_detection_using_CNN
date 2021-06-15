@@ -1,0 +1,189 @@
+body{
+ padding: 0px;
+ margin: 0px;
+}
+
+
+
+/*nav bar*/
+.navbar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  padding: 30px 0;
+  font-family: 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+  background-color: rgb(108, 90, 211);
+}
+
+.navbar.sticky{
+  padding: 15px 0;
+  background:  rgb(108, 90, 211);
+}
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo a{
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+}
+.navbar .logo a span{
+  color: rgb(108, 90, 211);
+  transition: all 0.3s ease;
+}
+.navbar.sticky .logo a span{
+  color: #fff;
+}
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+.navbar .menu li a{
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 25px;
+  transition: color 0.3s ease;
+}
+.navbar .menu li a:hover{
+  color: rgb(0, 0, 0);
+}
+.navbar.sticky .menu li a:hover{
+  color: #fff;
+}
+
+
+
+
+#about{
+
+}
+
+.header {
+  background: #410798;
+  padding: 20px 0px;
+  margin-top:90px;
+}
+
+
+.max-width{
+max-width: 1300px;
+padding: 0 80px;
+margin: auto;
+}
+
+.logo {
+  display: block;
+    margin: auto;
+   
+} 
+
+.mt{
+  margin-top: 10px;
+}
+
+.uploadedimg {
+  display: block;
+    margin: 20px auto;
+}
+
+.predict-button {
+  padding: 7px 15px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #9A0349;
+  border-color: #900646;
+  border-radius: 3px;
+  width: 400px;
+  width: 425px;
+    margin: 30px auto;
+    display: block;
+}
+
+.file-submit-button {
+  padding: 7px 15px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #3b9205;
+  border-color: #3b9205;
+  border-radius: 3px;
+}
+
+.file-upload-section {
+  margin: auto;
+  width: fit-content;
+
+}
+.file-upload-button {
+  padding: 7px 15px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #3a3a3a;
+  border-radius: 3px;
+}
+
+.center {
+  text-align: center;
+}
+
+.success-message {
+  color: darkgreen;
+  font-size: 16px; 
+}
+
+.hide {
+  visibility: hidden;
+}
+.results{
+  display: block;
+ 
+  background-color:#ddd;
+  color:#000;
+  max-width: 200px;
+  margin:20px auto;
+  font-size: 14px;
+}
+.results li {
+  list-style: none;
+  padding: 5px;
+  text-align: left;
+  
+  }
+
+
+
+  @media (max-width: 947px){
+    .menu-btn{
+        display: block;
+        z-index: 999;
+    }
+    .menu-btn i.active:before{
+        content: "\f00d";
+    }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }

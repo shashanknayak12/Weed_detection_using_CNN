@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>detection</title>
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <nav class="navbar">
+      <div class="max-width">
+          <div class="logo">
+              <a href="index.html">|FINAL PROJECT|</a>
+          </div>
+                  <ul class="menu">
+                      <li><a href="index.html#about" class="menu-btn">ABOUT US</a></li>
+                      <!-- <li><a href="#info" class="menu-btn">INFO</a></li> -->
+                      <li><a href="main.html" class="menu-btn">FIND WEED</a></li>
+                      <li><a href="index.html#guide" class="menu-btn">GUIDE</a></li>
+                      <li><a href="index.html#" class="menu-btn">TEAM</a></li>
+                      <li><a href="index.html#contact" class="menu-btn">CONTACT</a></li>
+                  </ul>
+              <div class="menu-btn">
+              <i class="fas fa-bars"></i>
+              </div>
+      </div>
+  </nav> 
+     
+
+   <div class="header">
+      <img class="logo" src="smvitm-college-logo.png"></img>
+   </div>
+   <div>
+      <h1 class="center"> Department of Computer Science and Engineering</h1>
+      <h3 class="center"> Weed detection:Using CNN model</h3>
+   </div>
+   <div>
+      <img class="uploadedimg" style="max-height: 200px;" id="image" src="NoImage.jpeg"></img>
+   </div>
+   <div class="file-upload-section">
+      <form id="cpa-form" method="POST" action="http://localhost:5000/uploader" enctype="multipart/form-data">
+         <input class="file-upload-button " type="file" id="file" name="file" onchange="onFileChange()" />
+         <button type="submit" id='file-submit-button' class="file-submit-button">Submit</button>
+   </div>
+   <div>
+      <p id="success-message" class="center success-message hide">
+         File has been uploaded successfully
+      </p>
+   </div>
+   <div>
+      <button class="predict-button" onclick="onPredict(event)">Predict</button>
+   </div>
+   <h3 class="center">
+      Results:
+   </h3>
+   <ul id='results' class='results'>
+
+
+   </ul>
+</body>
+<script>
+   // Gets a reference to the form element
+   var form = document.getElementById('cpa-form');
+
+   // Adds a listener for the "submit" event.
+   form.addEventListener('submit', function (e) {
+
+      e.preventDefault();
+      e.stopPropagation();
+      const formData = new FormData(e.target)
+      fetch('http://localhost:5000/uploader', {
+         method: 'POST',
+         body: formData
+      })
+         .then(response => response.json())
+         .then(data => {
+            console.log(data);
+            var successMessage = document.getElementById('success-message');
+            successMessage.classList.toggle('hide')
+            setTimeout(() => {
+               successMessage.classList.toggle('hide');
+            }, 2000)
+         })
+         .catch(error => {
+            console.error(error)
+         })
+
+   })
+   var tempfiles = ''
+
+   function readURL(input) {
+      if (tempfiles[0]) {
+         var reader = new FileReader();
+
+         reader.onload = function (e) {
+            imageTag = document.getElementById("image");
+            imageTag.src = e.target.result
+         }
+
+         reader.readAsDataURL(tempfiles[0]);
+      }
+   }
+
+   function onFileChange() {
+      tempfiles = document.getElementById("file").files;
+      readURL(this)
+
+   }
+
+   function onPredict(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fetch('http://localhost:5000/predict', {
+         method: 'POST',
+         body: ''
+      })
+         .then(response => response.json())
+         .then(data => {
+            console.log(data)
+            var resultselement = document.getElementById('results');
+            data.forEach(d=>{ let li=document.createElement('li')
+            li.appendChild(document.createTextNode(d))
+
+
+            resultselement.appendChild(li)})
+         })
+         .catch(error => {
+            console.error(error)
+         })
+   }
+
+
+</script>
+
+</html>
